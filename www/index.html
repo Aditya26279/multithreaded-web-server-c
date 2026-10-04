@@ -1,0 +1,25 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>tpool-c</title>
+  <style>
+    body { font: 16px/1.5 system-ui, sans-serif; max-width: 42rem; margin: 3rem auto; padding: 0 1rem; color: #222; background: #fafafa; }
+    code { background: #eee; padding: .1rem .35rem; border-radius: 4px; }
+    li { margin: .4rem 0; }
+  </style>
+</head>
+<body>
+  <h1>tpool-c</h1>
+  <p>A small web server in C: one acceptor thread, a mutex-protected request queue, and a pool of worker threads.</p>
+  <h2>Endpoints</h2>
+  <ul>
+    <li><a href="/hello"><code>/hello</code></a>: tiny response, shows raw per-request overhead</li>
+    <li><a href="/sleep?ms=200"><code>/sleep?ms=200</code></a>: blocks the handling thread, like a slow database or API call</li>
+    <li><a href="/cpu?n=50000000"><code>/cpu?n=50000000</code></a>: CPU-bound work</li>
+    <li><a href="/stats"><code>/stats</code></a>: live counters (requests, queue wait, queue depth)</li>
+  </ul>
+  <p>Open <code>/sleep?ms=3000</code> in two tabs at once. On <code>server_st</code> the second tab waits for the first to finish; on <code>server_mt</code> both come back after about 3 seconds.</p>
+</body>
+</html>
